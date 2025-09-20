@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.17)
 if(CMAKE_C_COMPILER)
 endif()
 
-set(LIBNAME "EXTENSION-NAME" CACHE STRING "The name of the library")
+set(LIBNAME "TEST_LIB" CACHE STRING "The name of the library")
 set(GODOT_PROJECT_DIR "demo" CACHE STRING "The directory of a Godot project folder")
 
 # Make sure all the dependencies are satisfied
@@ -45,11 +45,11 @@ project(godot-cpp-template
 
 add_library(${LIBNAME} SHARED)
 
-target_sources(${LIBNAME}
-    PRIVATE
-    src/register_types.cpp
-    src/register_types.h
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    src/*.cpp
 )
+
+target_sources(${LIBNAME} PRIVATE ${SOURCES})
 
 # Fetch a list of the xml files to use for documentation and add to our target
 file(GLOB_RECURSE DOC_XML LIST_DIRECTORIES NO CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/doc_classes/*.xml")

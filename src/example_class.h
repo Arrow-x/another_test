@@ -1,20 +1,21 @@
 #pragma once
 
-#include "godot_cpp/classes/ref_counted.hpp"
-#include "godot_cpp/classes/wrapped.hpp"
-#include "godot_cpp/variant/variant.hpp"
+#include "macros.h"
+#include <godot_cpp/classes/ref_counted.hpp>
 
-using namespace godot;
-
-class ExampleClass : public RefCounted {
+class ExampleClass : public godot::RefCounted {
 	GDCLASS(ExampleClass, RefCounted)
 
 protected:
 	static void _bind_methods();
+	EXPORT_VAR(int, something)
 
 public:
-	ExampleClass() = default;
+	ExampleClass();
 	~ExampleClass() override = default;
 
-	void print_type(const Variant &p_variant) const;
+	static void test_static();
+
+	void print_type(const godot::Variant &p_variant) const;
+	void hello_something() const;
 };
