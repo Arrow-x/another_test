@@ -2,6 +2,8 @@
 #include "example_class.h"
 #include "macros.h"
 #include <godot_cpp/classes/input_event_mouse_motion.hpp>
+#include <godot_cpp/classes/physics_ray_query_parameters3d.hpp>
+#include <godot_cpp/variant/vector3.hpp>
 
 using namespace godot;
 
@@ -21,6 +23,9 @@ void Summator::_notification(int p_notification) {
 			example_node = Object::cast_to<AnimatedSprite2D>(find_child("example_node"));
 			e = Object::cast_to<ExampleClass>(ClassDB::instantiate("ExampleClass"));
 			e->something = 0;
+			print_line("size of Summator is: ", sizeof(Summator));
+			query = PhysicsRayQueryParameters3D::create(Vector3(0, 0, 9), Vector3(4, 4, 4));
+			print_line("size of queray object: ", sizeof(**query));
 			break;
 		case NOTIFICATION_PROCESS:
 			break;

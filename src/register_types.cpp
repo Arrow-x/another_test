@@ -1,4 +1,5 @@
 #include "register_types.h"
+// #include "example_class.h"
 #include "example_class.h"
 #include "node_test.h"
 #include "summator.h"
@@ -10,8 +11,9 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level) {
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	GDREGISTER_RUNTIME_CLASS(ExampleClass)
+	// GDREGISTER_RUNTIME_CLASS(ExampleClass)
 	GDREGISTER_RUNTIME_CLASS(MySpecialNode)
+	GDREGISTER_RUNTIME_CLASS(ExampleClass)
 	GDREGISTER_RUNTIME_CLASS(Summator)
 	GDREGISTER_RUNTIME_CLASS(TestResource)
 }

@@ -3,7 +3,7 @@
 #include <godot_cpp/classes/resource.hpp>
 
 class TestResource : public godot::Resource {
-	GDCLASS(TestResource, godot::Resource);
+	GDCLASS(TestResource, godot::Resource)
 
 	EXPORT_VAR(int, test_int)
 	EXPORT_VAR(godot::String, test_string)

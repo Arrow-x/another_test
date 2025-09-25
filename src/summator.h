@@ -5,9 +5,11 @@
 #include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/physics_ray_query_parameters3d.hpp>
+#include <godot_cpp/classes/ref.hpp>
 
 class Summator : public godot::Node {
-	GDCLASS(Summator, godot::Node);
+	GDCLASS(Summator, godot::Node)
 
 	EXPORT_VAR(int, max_speed);
 	EXPORT_VAR(godot::String, char_name);
@@ -19,6 +21,7 @@ class Summator : public godot::Node {
 
 	godot::AnimatedSprite2D *example_node;
 	ExampleClass *e;
+	godot::Ref<godot::PhysicsRayQueryParameters3D> query;
 
 public:
 	Summator();
