@@ -1,0 +1,5 @@
+[gd_resource type="ExampleResource" format=3 uid="uid://cd6o7gvc0kq2k"]
+
+[resource]
+test_int = 2
+test_string = "something"

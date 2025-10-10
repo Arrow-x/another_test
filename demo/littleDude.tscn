@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b63fqqusgcj3s"]
+
+[ext_resource type="CapsuleMesh" uid="uid://dug3utv145st0" path="res://new_capsule_mesh.tres" id="1_6xp1l"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(0.39748427, 0.917609, 0, -0.917609, 0.39748427, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_6xp1l")

@@ -1,7 +1,6 @@
 #include "summator.h"
 #include "defer.hpp"
 #include "macros.h"
-#include <godot_cpp/core/print_string.hpp>
 
 using namespace godot;
 
@@ -13,8 +12,6 @@ Summator::Summator() {
 	test_resource = Ref<ExampleResource>();
 	mode = 0;
 	speed = 0.0f;
-	example_node = nullptr;
-	e = nullptr;
 	query = PhysicsRayQueryParameters3D::create(Vector3(0, 0, 9), Vector3(4, 4, 4));
 }
 
@@ -25,8 +22,8 @@ void Summator::_notification(int p_notification) {
 		case NOTIFICATION_READY: {
 			set_process(true);
 			set_physics_process(true);
-			// auto n = memnew(MySpecialNode);
-			// DEFER({ memfree(n); });
+			auto n = memnew(ExampleRef);
+			DEFER({ memfree(n); });
 			//
 			// add_child(n);
 			// auto *n = memnew(Node3D);
@@ -85,14 +82,17 @@ void Summator::say_hi() const {
 }
 
 void Summator::_bind_methods() {
-	EXPORT_REG(Summator, Variant::INT, max_speed)
-	EXPORT_REG(Summator, Variant::STRING, char_name)
-	EXPORT_REG(Summator, Variant::INT, count)
-	EXPORT_REG(Summator, Variant::FLOAT, my_angle)
+	REG(Summator, Variant::INT, max_speed)
+	REG(Summator, Variant::INT, count)
+	REG(Summator, Variant::FLOAT, my_angle)
+	REG(Summator, Variant::STRING, char_name)
 
-	EXPORT_REG_HINT(Summator, Variant::OBJECT, test_resource, PROPERTY_HINT_RESOURCE_TYPE, "TestResource")
-	EXPORT_REG_HINT(Summator, Variant::INT, mode, PROPERTY_HINT_ENUM, "Idle,Walk,Run,Jump")
-	EXPORT_REG_HINT(Summator, Variant::FLOAT, speed, PROPERTY_HINT_RANGE, "0,100,0.5,or_greater")
+	REG_HINT(Summator, Variant::FLOAT, speed, PROPERTY_HINT_RANGE, "0,100,0.5,or_greater")
+	REG_HINT(Summator, Variant::INT, mode, PROPERTY_HINT_ENUM, "Idle,Walk,Run,Jump")
+	REG_HINT(Summator, Variant::NODE_PATH, example_node_path, godot::PROPERTY_HINT_NODE_PATH_VALID_TYPES, "AnimatedSprite2D")
 
-	ClassDB::bind_method(D_METHOD("add"), &Summator::add);
+	REG_NODE(Summator, mesh_instance, "MeshInstance3D")
+	REG_RESOURCE(Summator, test_resource, "ExampleResource")
+
+	ClassDB::bind_method(D_METHOD("add", "value"), &Summator::add);
 }

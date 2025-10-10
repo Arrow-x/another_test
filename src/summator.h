@@ -4,23 +4,30 @@
 #include "macros.h"
 #include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/input_event.hpp>
+#include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/physics_ray_query_parameters3d.hpp>
 #include <godot_cpp/classes/ref.hpp>
+#include <godot_cpp/variant/node_path.hpp>
 
 class Summator : public godot::Node {
 	GDCLASS(Summator, godot::Node)
 
 	EXPORT_VAR(int, max_speed);
-	EXPORT_VAR(godot::String, char_name);
 	EXPORT_VAR(int, count);
-	EXPORT_VAR(float, my_angle);
-	EXPORT_VAR(godot::Ref<ExampleResource>, test_resource)
 	EXPORT_VAR(int, mode)
+	EXPORT_VAR(float, my_angle);
 	EXPORT_VAR(float, speed)
+	EXPORT_VAR(godot::String, char_name);
+	EXPORT_VAR(godot::Ref<ExampleResource>, test_resource)
 
-	godot::AnimatedSprite2D *example_node;
-	ExampleRef *e;
+public:
+	godot ::MeshInstance3D *mesh_instance;
+	void set_mesh_instance(godot ::MeshInstance3D *value) { mesh_instance = value; }
+	godot ::MeshInstance3D *get_mesh_instance() const { return mesh_instance; }
+
+	EXPORT_VAR(godot::NodePath, example_node_path)
+
 	godot::Ref<godot::PhysicsRayQueryParameters3D> query;
 
 public:

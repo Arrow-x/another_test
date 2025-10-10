@@ -1,5 +1,5 @@
 #include "example_node.h"
-#include <godot_cpp/core/print_string.hpp>
+#include "example_ref.h"
 
 using namespace godot;
 
@@ -11,9 +11,12 @@ ExampleNode::ExampleNode() {
 void ExampleNode::_ready() {
 	print_line("hi this is SpecialNode _ready");
 	String s = "something";
-	print_line("size of a Resource is: ", sizeof(ExampleResource));
+	Ref<ExampleResource> m = memnew(ExampleResource);
+	Ref<ExampleRef> f = memnew(ExampleRef);
+	print_line("size of a Resource is**: ", sizeof(**m));
+	print_line("size of a RefCounted is**: ", sizeof(**f));
 }
 
 void ExampleNode::_bind_methods() {
-	EXPORT_REG_HINT(ExampleNode, Variant::OBJECT, my_example_rec, godot::PROPERTY_HINT_RESOURCE_TYPE, "ExampleResource");
+	REG_HINT(ExampleNode, Variant::OBJECT, my_example_rec, godot::PROPERTY_HINT_RESOURCE_TYPE, "ExampleResource");
 }
