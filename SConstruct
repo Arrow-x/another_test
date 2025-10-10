@@ -28,6 +28,8 @@ Help(opts.GenerateHelpText(localEnv))
 
 env = localEnv.Clone()
 
+env["CXX_STANDARD"] = '20'
+
 if not (os.path.isdir("godot-cpp") and os.listdir("godot-cpp")):
     print_error("""godot-cpp is not available within this folder, as Git submodules haven't been initialized.
 Run the following command to download godot-cpp:
