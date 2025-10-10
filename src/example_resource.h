@@ -14,7 +14,8 @@ public:
 		float m;
 		godot::Vector3 v;
 	};
-	void somefunc(Psomefunc p);
+	void somefunc(const Psomefunc &p);
+	float new_function(const int idx);
 
 protected:
 	static void _bind_methods();
