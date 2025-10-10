@@ -1,9 +1,8 @@
 #include "register_types.h"
-// #include "example_class.h"
-#include "example_class.h"
-#include "node_test.h"
+#include "example_node.h"
+#include "example_ref.h"
+#include "example_resource.h"
 #include "summator.h"
-#include "test_resource.h"
 
 using namespace godot;
 
@@ -12,10 +11,10 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level) {
 		return;
 	}
 	// GDREGISTER_RUNTIME_CLASS(ExampleClass)
-	GDREGISTER_RUNTIME_CLASS(MySpecialNode)
-	GDREGISTER_RUNTIME_CLASS(ExampleClass)
+	GDREGISTER_RUNTIME_CLASS(ExampleNode)
+	GDREGISTER_RUNTIME_CLASS(ExampleRef)
 	GDREGISTER_RUNTIME_CLASS(Summator)
-	GDREGISTER_RUNTIME_CLASS(TestResource)
+	GDREGISTER_RUNTIME_CLASS(ExampleResource)
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

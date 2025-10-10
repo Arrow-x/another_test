@@ -1,36 +1,62 @@
 #include "summator.h"
-#include "example_class.h"
+#include "defer.hpp"
 #include "macros.h"
-#include <godot_cpp/classes/input_event_mouse_motion.hpp>
-#include <godot_cpp/classes/physics_ray_query_parameters3d.hpp>
-#include <godot_cpp/variant/vector3.hpp>
+#include <godot_cpp/core/print_string.hpp>
 
 using namespace godot;
 
 Summator::Summator() {
-	count = 0;
 	max_speed = 94;
+	char_name = "hi";
+	count = 0;
+	my_angle = 1.0f;
+	test_resource = Ref<ExampleResource>();
 	mode = 0;
-	set_process(true);
+	speed = 0.0f;
+	example_node = nullptr;
+	e = nullptr;
+	query = PhysicsRayQueryParameters3D::create(Vector3(0, 0, 9), Vector3(4, 4, 4));
 }
 
 void Summator::_notification(int p_notification) {
 	switch (p_notification) {
 		case NOTIFICATION_ENTER_TREE:
-			print_line("we entered the tree");
 			break;
-		case NOTIFICATION_READY:
-			example_node = Object::cast_to<AnimatedSprite2D>(find_child("example_node"));
-			e = Object::cast_to<ExampleClass>(ClassDB::instantiate("ExampleClass"));
-			e->something = 0;
-			print_line("size of Summator is: ", sizeof(Summator));
-			query = PhysicsRayQueryParameters3D::create(Vector3(0, 0, 9), Vector3(4, 4, 4));
-			print_line("size of queray object: ", sizeof(**query));
+		case NOTIFICATION_READY: {
+			set_process(true);
+			set_physics_process(true);
+			// auto n = memnew(MySpecialNode);
+			// DEFER({ memfree(n); });
+			//
+			// add_child(n);
+			// auto *n = memnew(Node3D);
+			// DEFER({ memfree(n); });
+			// print_line("size of a generic Node3D is: ", sizeof(*n));
+			//
+			// auto *o = memnew(Object);
+			// DEFER({ memfree(o); });
+			// print_line("size of a generic Object is: ", sizeof(*o));
+			//
+			// auto *r = memnew(RefCounted);
+			// DEFER({ memfree(r); });
+			// print_line("size of a generic RefCounted is: ", sizeof(*r));
+			//
+			// auto *m = new Simple();
+			// DEFER({ delete m; });
+			// print_line("size of a generic Struct is: ", sizeof(*m));
+			// print_line("size of Summator is: ", sizeof(*this));
 			break;
-		case NOTIFICATION_PROCESS:
+		}
+		case NOTIFICATION_PHYSICS_PROCESS: {
+			// double pdt = get_physics_process_delta_time();
+			// print_line("phyics process: ", pdt);
 			break;
-		case NOTIFICATION_PHYSICS_PROCESS:
+		}
+		case NOTIFICATION_PROCESS: {
+			// double dt = get_process_delta_time();
+			// print_line("process dt: ", dt);
 			break;
+		}
 	}
 }
 void Summator::_input(const Ref<InputEvent> &p_event) {
@@ -43,9 +69,6 @@ void Summator::_input(const Ref<InputEvent> &p_event) {
 }
 
 void Summator::add(int p_value) {
-	e->something++;
-	print_line(e->get_something());
-	ClassDB::class_call_static("ExampleClass", "test_static");
 	count += p_value;
 }
 

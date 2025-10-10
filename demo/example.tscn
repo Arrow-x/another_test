@@ -1,10 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpuaght42b6ug"]
+[gd_scene load_steps=6 format=3 uid="uid://dpuaght42b6ug"]
 
-[ext_resource type="Script" uid="uid://bkwk40ybs8kgm" path="res://example.gd" id="1_jdh55"]
+[ext_resource type="CapsuleMesh" uid="uid://dug3utv145st0" path="res://new_capsule_mesh.tres" id="2_n51mc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n51mc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_8lvy3"]
+sky_material = SubResource("ProceduralSkyMaterial_n51mc")
+
+[sub_resource type="Environment" id="Environment_wcwec"]
+background_mode = 2
+sky = SubResource("Sky_8lvy3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ExampleResource" id="ExampleResource_2jas5"]
+test_int = 5
+test_string = "something"
 
 [node name="Node" type="Node3D"]
-script = ExtResource("1_jdh55")
 
-[node name="Summator" type="Summator" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wcwec")
 
-[node name="MySpecialNode" type="MySpecialNode" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -11.874451, 0, 2.7913656)
+shadow_enabled = true
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84022915, 0, 0)
+mesh = ExtResource("2_n51mc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68407655, 0, 0)
+mesh = ExtResource("2_n51mc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9796594, 0.20066759, 0, -0.20066759, 0.9796594, 0, 1.1790571, 3.665805)
+
+[node name="ExampleNode" type="ExampleNode" parent="."]
+my_example_rec = SubResource("ExampleResource_2jas5")
