@@ -1,5 +1,4 @@
 #pragma once
-#include "example_ref.h"
 #include "example_resource.h"
 #include "macros.h"
 #include <godot_cpp/classes/animated_sprite2d.hpp>
@@ -20,26 +19,23 @@ class Summator : public godot::Node {
 	EXPORT_VAR(float, speed)
 	EXPORT_VAR(godot::String, char_name);
 	EXPORT_VAR(godot::Ref<ExampleResource>, test_resource)
-
-public:
-	godot ::MeshInstance3D *mesh_instance;
-	void set_mesh_instance(godot ::MeshInstance3D *value) { mesh_instance = value; }
-	godot ::MeshInstance3D *get_mesh_instance() const { return mesh_instance; }
-
 	EXPORT_VAR(godot::NodePath, example_node_path)
+	EXPORT_NODE(godot::MeshInstance3D, mesh_instance);
 
+private:
 	godot::Ref<godot::PhysicsRayQueryParameters3D> query;
 
 public:
 	Summator();
-	int get_total() const;
-	void say_hi() const;
-	void add(int p_value);
-	void reset();
 
 	// void _physics_process(double p_delta) override;
 	void _notification(int what);
 	void _input(const godot::Ref<godot::InputEvent> &p_event) override;
+
+	int get_total() const;
+	void say_hi() const;
+	void add(int p_value);
+	void reset();
 
 protected:
 	static void _bind_methods();

@@ -1,5 +1,6 @@
 #include "summator.h"
 #include "defer.hpp"
+#include "example_ref.h"
 #include "macros.h"
 
 using namespace godot;
@@ -24,6 +25,7 @@ void Summator::_notification(int p_notification) {
 			set_physics_process(true);
 			auto n = memnew(ExampleRef);
 			DEFER({ memfree(n); });
+			print_line(test_resource->test_int);
 			//
 			// add_child(n);
 			// auto *n = memnew(Node3D);
