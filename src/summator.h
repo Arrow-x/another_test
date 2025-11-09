@@ -1,13 +1,14 @@
 #pragma once
+
+#include "example_ref.h"
 #include "example_resource.h"
 #include "macros.h"
-#include <godot_cpp/classes/animated_sprite2d.hpp>
+
+#include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
-#include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/classes/physics_ray_query_parameters3d.hpp>
-#include <godot_cpp/classes/ref.hpp>
-#include <godot_cpp/variant/node_path.hpp>
+
+namespace gutils {
 
 class Summator : public godot::Node {
 	GDCLASS(Summator, godot::Node)
@@ -16,14 +17,15 @@ class Summator : public godot::Node {
 	EXPORT_VAR(int, count);
 	EXPORT_VAR(int, mode)
 	EXPORT_VAR(float, my_angle);
-	EXPORT_VAR(float, speed)
+	EXPORT_VAR(float, speeds)
 	EXPORT_VAR(godot::String, char_name);
-	EXPORT_VAR(godot::Ref<ExampleResource>, test_resource)
+	EXPORT_VAR(godot::Ref<gutils::ExampleResource>, test_resource)
 	EXPORT_VAR(godot::NodePath, example_node_path)
 	EXPORT_NODE(godot::MeshInstance3D, mesh_instance);
 
 private:
-	godot::Ref<godot::PhysicsRayQueryParameters3D> query;
+	godot::Ref<ExampleRef> n;
+	godot::Input *input;
 
 public:
 	Summator();
@@ -43,3 +45,4 @@ protected:
 
 struct Simple {
 };
+} //namespace gutils

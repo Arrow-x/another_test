@@ -11,10 +11,10 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level) {
 		return;
 	}
 	// GDREGISTER_RUNTIME_CLASS(ExampleClass)
-	GDREGISTER_RUNTIME_CLASS(ExampleNode)
-	GDREGISTER_RUNTIME_CLASS(ExampleRef)
-	GDREGISTER_RUNTIME_CLASS(Summator)
-	GDREGISTER_RUNTIME_CLASS(ExampleResource)
+	GDREGISTER_RUNTIME_CLASS(gutils::ExampleNode)
+	GDREGISTER_RUNTIME_CLASS(gutils::ExampleRef)
+	GDREGISTER_RUNTIME_CLASS(gutils::Summator)
+	GDREGISTER_RUNTIME_CLASS(gutils::ExampleResource)
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

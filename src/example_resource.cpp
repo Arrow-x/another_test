@@ -1,6 +1,7 @@
 #include "example_resource.h"
 
 using namespace godot;
+using namespace gutils;
 
 ExampleResource::ExampleResource() {
 	test_int = 0;

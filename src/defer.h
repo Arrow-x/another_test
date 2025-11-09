@@ -10,4 +10,4 @@ struct Defer {
 #define CONCAT_DETAIL(x, y) x##y
 #define CONCAT(x, y) CONCAT_DETAIL(x, y)
 
-#define DEFER(block) auto CONCAT(_defer_, __COUNTER__) = Defer([&]() block)
+#define DEFER(block) auto CONCAT(_defer_, __COUNTER__) = Defer([&]() block);

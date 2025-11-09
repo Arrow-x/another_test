@@ -3,6 +3,7 @@
 // #include "example_resource.h"
 
 using namespace godot;
+using namespace gutils;
 
 ExampleNode::ExampleNode() {
 	// print_line("constructed MySpecialNode");

@@ -1,6 +1,7 @@
 #pragma once
 #include "macros.h"
 #include <godot_cpp/classes/resource.hpp>
+namespace gutils {
 
 class ExampleResource : public godot::Resource {
 	GDCLASS(ExampleResource, godot::Resource)
@@ -20,3 +21,4 @@ public:
 protected:
 	static void _bind_methods();
 };
+} //namespace gutils

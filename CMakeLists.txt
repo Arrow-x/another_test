@@ -47,6 +47,8 @@ add_library(${LIBNAME} SHARED)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     src/*.cpp
+    src/*.h
+    src/*.hpp
 )
 
 target_sources(${LIBNAME} PRIVATE ${SOURCES})

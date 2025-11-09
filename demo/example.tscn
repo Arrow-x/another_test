@@ -1,6 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpuaght42b6ug"]
 
 [ext_resource type="PackedScene" uid="uid://b63fqqusgcj3s" path="res://littleDude.tscn" id="1_2jas5"]
+[ext_resource type="Script" uid="uid://y840wfs54ien" path="res://example.gd" id="1_n51mc"]
+[ext_resource type="ExampleResource" uid="uid://cd6o7gvc0kq2k" path="res://new_example_resource.tres" id="3_8lvy3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n51mc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,11 +17,8 @@ sky = SubResource("Sky_8lvy3")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ExampleResource" id="ExampleResource_2jas5"]
-
-[sub_resource type="ExampleResource" id="ExampleResource_n51mc"]
-
 [node name="Node" type="Node3D"]
+script = ExtResource("1_n51mc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wcwec")
@@ -29,30 +28,24 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9796594, 0.20066759, 0, -0.20066759, 0.9796594, 0, 1.1790571, 3.665805)
-
-[node name="ExampleNode" type="ExampleNode" parent="."]
-my_example_rec = SubResource("ExampleResource_2jas5")
+transform = Transform3D(1, 0, 0, 0, 0.7731433, 0.6342314, 0, -0.6342314, 0.7731433, 0, 7.289564, 6.2825813)
 
 [node name="MeshInstance3D" parent="." instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-skeleton = NodePath("../ExampleNode")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D2" parent="." instance=ExtResource("1_2jas5")]
 transform = Transform3D(0.02507777, 0.9996855, 0, -0.9996855, 0.02507777, 0, 0, 0, 1, -4.726211, 3.9386573, 0)
-skeleton = NodePath("../ExampleNode")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D3" parent="." instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.505092, 0, 0)
-skeleton = NodePath("../ExampleNode")
+skeleton = NodePath("")
 
 [node name="MeshInstance3D4" parent="." instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0677, 0, 0)
 skeleton = NodePath("../MeshInstance3D3")
 
 [node name="Summator" type="Summator" parent="." node_paths=PackedStringArray("mesh_instance")]
-example_node_path = NodePath("../AnimatedSprite2D")
 mesh_instance = NodePath("../MeshInstance3D")
-test_resource = SubResource("ExampleResource_n51mc")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+test_resource = ExtResource("3_8lvy3")
