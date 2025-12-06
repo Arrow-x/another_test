@@ -3,13 +3,8 @@
 using namespace godot;
 using namespace gutils;
 
-ExampleResource::ExampleResource() {
-	test_int = 0;
-	test_string = "";
+ExampleResource::ExampleResource() : test_int(0), test_string("") {
 	somefunc({ .s = 3, .m = 0, .v = Vector3(3.4, 5, 5) });
-}
-float ExampleResource::new_function(const int idx) {
-	return float(idx);
 }
 
 void ExampleResource::somefunc(const ExampleResource::Psomefunc &p) {

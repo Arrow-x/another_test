@@ -1,0 +1,18 @@
+Checks: >
+  -*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  cppcoreguidelines-*,
+  bugprone-*,
+  misc-*,
+  clang-analyzer-*,
+WarningsAsErrors: >
+  cppcoreguidelines-*,
+  bugprone-*,
+  modernize-*,
+CheckOptions:
+  - key: modernize-use-emplace.StrictMode
+    value: 1
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case

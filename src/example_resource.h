@@ -11,12 +11,14 @@ class ExampleResource : public godot::Resource {
 public:
 	ExampleResource();
 	struct Psomefunc {
-		int s;
-		float m;
+		int s{};
+		float m{};
 		godot::Vector3 v;
 	};
 	void somefunc(const Psomefunc &p);
-	float new_function(const int idx);
+	static auto new_function(const int idx) -> float {
+		return float(idx);
+	}
 
 protected:
 	static void _bind_methods();

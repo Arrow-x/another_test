@@ -21,13 +21,20 @@
 	ADD_PROPERTY(PropertyInfo(godot::Variant::OBJECT, #NAME, godot::PROPERTY_HINT_RESOURCE_TYPE, HINT_STRING), "set_" #NAME, "get_" #NAME);
 
 #define EXPORT_VAR(TYPE, NAME)                           \
-public:                                                  \
+private:                                                 \
 	TYPE NAME;                                           \
+                                                         \
+public:                                                  \
 	void set_##NAME(const TYPE &value) { NAME = value; } \
-	TYPE get_##NAME() const { return NAME; }
+	auto get_##NAME() const -> TYPE { return NAME; }
 
 #define EXPORT_NODE(TYPE, NAME)                    \
-public:                                            \
+private:                                           \
 	TYPE *NAME;                                    \
+                                                   \
+public:                                            \
 	void set_##NAME(TYPE *value) { NAME = value; } \
-	TYPE *get_##NAME() const { return NAME; }
+	[[nodiscard]] auto get_##NAME() const -> TYPE * { return NAME; }
+
+#define REG_SIGNAL(NAME) \
+	godot::ClassDB::add_signal(get_class_static(), godot::MethodInfo(NAME))

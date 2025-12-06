@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpuaght42b6ug"]
+[gd_scene load_steps=6 format=3 uid="uid://dpuaght42b6ug"]
 
 [ext_resource type="PackedScene" uid="uid://b63fqqusgcj3s" path="res://littleDude.tscn" id="1_2jas5"]
 [ext_resource type="Script" uid="uid://y840wfs54ien" path="res://example.gd" id="1_n51mc"]
-[ext_resource type="ExampleResource" uid="uid://cd6o7gvc0kq2k" path="res://new_example_resource.tres" id="3_8lvy3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n51mc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,6 +45,6 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0677, 0, 0)
 skeleton = NodePath("../MeshInstance3D3")
 
-[node name="Summator" type="Summator" parent="." node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../MeshInstance3D")
-test_resource = ExtResource("3_8lvy3")
+[node name="BaseEntity" type="BaseEntity" parent="."]
+
+[node name="Summator" type="Summator" parent="."]

@@ -5,13 +5,12 @@
 #include "macros.h"
 
 #include <godot_cpp/classes/input.hpp>
-#include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 
 namespace gutils {
 
-class Summator : public godot::Node {
-	GDCLASS(Summator, godot::Node)
+class Summator : public godot::Node { //NOLINT
+	GDCLASS(Summator, godot::Node) //NOLINT
 
 	EXPORT_VAR(int, max_speed);
 	EXPORT_VAR(int, count);
@@ -29,20 +28,15 @@ private:
 
 public:
 	Summator();
+	auto _notification(int what) -> void;
 
-	// void _physics_process(double p_delta) override;
-	void _notification(int what);
-	void _input(const godot::Ref<godot::InputEvent> &p_event) override;
-
-	int get_total() const;
-	void say_hi() const;
-	void add(int p_value);
-	void reset();
+	[[nodiscard]]
+	auto get_total() const -> int;
+	auto add(int p_value) -> void;
+	static void say_hi();
+	static void reset();
 
 protected:
 	static void _bind_methods();
-};
-
-struct Simple {
 };
 } //namespace gutils

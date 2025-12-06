@@ -3,26 +3,15 @@
 using namespace godot;
 using namespace gutils;
 
-Summator::Summator() {
-	max_speed = 94;
-	char_name = "hi";
-	count = 0;
-	my_angle = 1.0f;
-	mode = 0;
-	speeds = 0.0f;
+Summator::Summator() : max_speed(0), count(0), mode(0), my_angle(0.0F), speeds(0.0F), char_name(""), mesh_instance(nullptr), input(nullptr) {
 }
 
-void Summator::_notification(int p_notification) {
-	switch (p_notification) {
-		case NOTIFICATION_ENTER_TREE: {
+auto Summator::_notification(int what) -> void {
+	switch (what) {
+		case NOTIFICATION_READY: {
 			input = Input::get_singleton();
 			set_process(true);
 			set_physics_process(true);
-			break;
-		}
-		case NOTIFICATION_READY: {
-			n = Ref<ExampleRef>(memnew(ExampleRef));
-			n->connect("something_to", callable_mp(this, &Summator::reset));
 			break;
 		}
 		case NOTIFICATION_PHYSICS_PROCESS: {
@@ -32,8 +21,6 @@ void Summator::_notification(int p_notification) {
 			} else if (input->is_action_just_released("left_click")) {
 				print_line("left click");
 			}
-			// double pdt = get_physics_process_delta_time();
-			// print_line("phyics process: ", pdt);
 			break;
 		}
 		case NOTIFICATION_PROCESS: {
@@ -41,38 +28,28 @@ void Summator::_notification(int p_notification) {
 			// print_line("process dt: ", dt);
 			break;
 		}
+		default:
+			break;
 	}
 }
 
-void Summator::_input(const Ref<InputEvent> &p_event) {
-	if (p_event->is_action_pressed("ui_accept")) {
-		print_line("hit enter");
-		n->emit_signal("something_to");
-
-	} else if (p_event->is_action_pressed("left_click")) {
-		print_line("you pressed left click");
-		n->emit_signal("something_to");
-		add(3);
-	}
-}
-
-void Summator::add(int p_value) {
+auto Summator::add(int p_value) -> void {
 	count += p_value;
 }
 
-void Summator::reset() {
+auto Summator::reset() -> void {
 	print_line("setting");
 }
 
-int Summator::get_total() const {
+auto Summator::get_total() const -> int {
 	return count;
 }
 
-void Summator::say_hi() const {
+auto Summator::say_hi() -> void {
 	print_line("hello for vitnaaaaam");
 }
 
-void Summator::_bind_methods() {
+auto Summator::_bind_methods() -> void {
 	REG(Summator, Variant::INT, max_speed)
 	REG(Summator, Variant::INT, count)
 	REG(Summator, Variant::FLOAT, my_angle)
@@ -86,5 +63,8 @@ void Summator::_bind_methods() {
 	REG_RESOURCE(Summator, test_resource, "ExampleResource")
 
 	ClassDB::bind_method(D_METHOD("add", "value"), &Summator::add);
-	ClassDB::bind_method(D_METHOD("say_hi"), &Summator::say_hi);
+	ClassDB::bind_method(D_METHOD("get_total"), &Summator::get_total);
+
+	ClassDB::bind_static_method("Summator", D_METHOD("say_hi"), &Summator::say_hi);
+	ClassDB::bind_static_method("Summator", D_METHOD("reset"), &Summator::reset);
 }
