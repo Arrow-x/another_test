@@ -1,53 +1,14 @@
 #include "summator.h"
+#include "gutils.h"
+#include <godot_cpp/classes/input_event_mouse.hpp>
+#include <godot_cpp/classes/input_event_mouse_button.hpp>
+#include <godot_cpp/classes/object.hpp>
+#include <godot_cpp/classes/viewport.hpp>
+#include <godot_cpp/core/print_string.hpp>
+#include <godot_cpp/variant/vector2.hpp>
 
 using namespace godot;
 using namespace gutils;
-
-Summator::Summator() : max_speed(0), count(0), mode(0), my_angle(0.0F), speeds(0.0F), char_name(""), mesh_instance(nullptr), input(nullptr) {
-}
-
-auto Summator::_notification(int what) -> void {
-	switch (what) {
-		case NOTIFICATION_READY: {
-			input = Input::get_singleton();
-			set_process(true);
-			set_physics_process(true);
-			break;
-		}
-		case NOTIFICATION_PHYSICS_PROCESS: {
-			//INPUT
-			if (input->is_action_just_released("ui_accept")) {
-				print_line("pressed enter");
-			} else if (input->is_action_just_released("left_click")) {
-				print_line("left click");
-			}
-			break;
-		}
-		case NOTIFICATION_PROCESS: {
-			// double dt = get_process_delta_time();
-			// print_line("process dt: ", dt);
-			break;
-		}
-		default:
-			break;
-	}
-}
-
-auto Summator::add(int p_value) -> void {
-	count += p_value;
-}
-
-auto Summator::reset() -> void {
-	print_line("setting");
-}
-
-auto Summator::get_total() const -> int {
-	return count;
-}
-
-auto Summator::say_hi() -> void {
-	print_line("hello for vitnaaaaam");
-}
 
 auto Summator::_bind_methods() -> void {
 	REG(Summator, Variant::INT, max_speed)
@@ -64,7 +25,49 @@ auto Summator::_bind_methods() -> void {
 
 	ClassDB::bind_method(D_METHOD("add", "value"), &Summator::add);
 	ClassDB::bind_method(D_METHOD("get_total"), &Summator::get_total);
+}
 
-	ClassDB::bind_static_method("Summator", D_METHOD("say_hi"), &Summator::say_hi);
-	ClassDB::bind_static_method("Summator", D_METHOD("reset"), &Summator::reset);
+auto Summator::_notification(int what) -> void {
+	switch (what) {
+		case NOTIFICATION_READY: {
+			set_process(true);
+			set_physics_process(true);
+			print_line(gutils::get_scene_root());
+			break;
+		}
+		case NOTIFICATION_PHYSICS_PROCESS: { //NOLINT
+			break;
+		}
+		case NOTIFICATION_PROCESS: {
+			// double dt = get_process_delta_time();
+			// print_line("process dt: ", dt);
+			break;
+		}
+
+		default:
+			break;
+	}
+}
+auto Summator::_unhandled_input(const Ref<InputEvent> &p_event) -> void {
+	Ref<InputEventMouse> mouse_event = p_event;
+	if (mouse_event.is_valid()) {
+		print_line("god forbid a white boy get a little motion ", get_class());
+		get_viewport()->set_input_as_handled();
+	}
+	Ref<InputEventMouseButton> mouse_event_button = p_event;
+	if (mouse_event_button.is_valid()) {
+		if (mouse_event_button->is_pressed() && mouse_event_button->get_button_index() == MOUSE_BUTTON_LEFT) {
+			print_line("Left mouse button clicked at: ", mouse_event_button->get_position());
+		}
+		if (mouse_event_button->get_button_index() == MOUSE_BUTTON_LEFT && mouse_event_button->is_double_click()) {
+			print_line("double click me daddy ", mouse_event_button->get_position());
+		}
+	}
+}
+auto Summator::add(int p_value) -> void {
+	count += p_value;
+}
+
+auto Summator::get_total() const -> int {
+	return count;
 }

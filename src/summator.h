@@ -5,7 +5,9 @@
 #include "macros.h"
 
 #include <godot_cpp/classes/input.hpp>
+#include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
+#include <godot_cpp/variant/vector2.hpp>
 
 namespace gutils {
 
@@ -24,17 +26,15 @@ class Summator : public godot::Node { //NOLINT
 
 private:
 	godot::Ref<ExampleRef> n;
-	godot::Input *input;
+	godot::Vector2 current_mouse_pos;
 
 public:
 	Summator();
 	auto _notification(int what) -> void;
+	auto _unhandled_input(const godot::Ref<godot::InputEvent> &p_event) -> void override;
 
-	[[nodiscard]]
-	auto get_total() const -> int;
+	[[nodiscard]] auto get_total() const -> int;
 	auto add(int p_value) -> void;
-	static void say_hi();
-	static void reset();
 
 protected:
 	static void _bind_methods();

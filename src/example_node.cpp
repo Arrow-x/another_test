@@ -5,11 +5,6 @@
 using namespace godot;
 using namespace gutils;
 
-ExampleNode::ExampleNode() {
-	// print_line("constructed MySpecialNode");
-	// std::cout << "constructed me MySpecialNode\n";
-}
-
 void ExampleNode::_ready() {
 	// 	print_line("hi this is SpecialNode _ready");
 	// 	String s = "something";

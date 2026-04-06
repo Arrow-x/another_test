@@ -6,13 +6,12 @@
 //-------------------------------------------
 namespace gutils {
 
-class ExampleNode : public godot::Node {
-	GDCLASS(ExampleNode, godot::Node)
+class ExampleNode : public godot::Node { //NOLINT
+	GDCLASS(ExampleNode, godot::Node) //NOLINT
 
 	EXPORT_VAR(godot::Ref<ExampleResource>, my_example_rec);
 
 public:
-	ExampleNode();
 	void _ready() override;
 
 protected:

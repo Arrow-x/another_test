@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpuaght42b6ug"]
+[gd_scene format=3 uid="uid://dpuaght42b6ug"]
 
 [ext_resource type="PackedScene" uid="uid://b63fqqusgcj3s" path="res://littleDude.tscn" id="1_2jas5"]
 [ext_resource type="Script" uid="uid://y840wfs54ien" path="res://example.gd" id="1_n51mc"]
@@ -16,35 +16,33 @@ sky = SubResource("Sky_8lvy3")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Node" type="Node3D"]
+[node name="YOurDaddy" type="Node3D" unique_id=414470076]
 script = ExtResource("1_n51mc")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1926486286]
 environment = SubResource("Environment_wcwec")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=343028628]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -11.874451, 0, 2.7913656)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1287147298]
 transform = Transform3D(1, 0, 0, 0, 0.7731433, 0.6342314, 0, -0.6342314, 0.7731433, 0, 7.289564, 6.2825813)
 
-[node name="MeshInstance3D" parent="." instance=ExtResource("1_2jas5")]
+[node name="MeshInstance3D" parent="." unique_id=20911466 instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 skeleton = NodePath("")
 
-[node name="MeshInstance3D2" parent="." instance=ExtResource("1_2jas5")]
+[node name="MeshInstance3D2" parent="." unique_id=533965951 instance=ExtResource("1_2jas5")]
 transform = Transform3D(0.02507777, 0.9996855, 0, -0.9996855, 0.02507777, 0, 0, 0, 1, -4.726211, 3.9386573, 0)
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" parent="." instance=ExtResource("1_2jas5")]
+[node name="MeshInstance3D3" parent="." unique_id=2104535921 instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.505092, 0, 0)
 skeleton = NodePath("")
 
-[node name="MeshInstance3D4" parent="." instance=ExtResource("1_2jas5")]
+[node name="MeshInstance3D4" parent="." unique_id=1040838897 instance=ExtResource("1_2jas5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0677, 0, 0)
 skeleton = NodePath("../MeshInstance3D3")
 
-[node name="BaseEntity" type="BaseEntity" parent="."]
-
-[node name="Summator" type="Summator" parent="."]
+[node name="Summator" type="Summator" parent="." unique_id=1467010484]
