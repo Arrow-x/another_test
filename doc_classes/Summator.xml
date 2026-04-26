@@ -4,6 +4,7 @@
 		greetings from the wall
 	</brief_description>
 	<description>
+		my daddy told me to call him princess
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,6 +13,7 @@
 			<return type="void" />
 			<param index="0" name="_unnamed_arg0" type="int" />
 			<description>
+				this will add stuff
 			</description>
 		</method>
 	</methods>

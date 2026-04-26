@@ -10,8 +10,8 @@ namespace signals {
 constexpr inline auto example_signal{ "example_signal" };
 }
 
-class ExampleRef : public godot::RefCounted {
-	GDCLASS(ExampleRef, godot::RefCounted)
+class ExampleRef : public godot::RefCounted { //NOLINT
+	GDCLASS(ExampleRef, godot::RefCounted) //NOLINT
 
 	EXPORT_VAR(int, something)
 

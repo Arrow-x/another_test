@@ -16,19 +16,17 @@ class Summator : public godot::Node { //NOLINT
 
 	EXPORT_VAR(int, max_speed);
 	EXPORT_VAR(int, count);
-	EXPORT_VAR(int, mode)
+	EXPORT_VAR(int, mode);
 	EXPORT_VAR(float, my_angle);
-	EXPORT_VAR(float, speeds)
+	EXPORT_VAR(float, speeds);
 	EXPORT_VAR(godot::String, char_name);
-	EXPORT_VAR(godot::Ref<gutils::ExampleResource>, test_resource)
-	EXPORT_VAR(godot::NodePath, example_node_path)
+	EXPORT_VAR(godot::Ref<gutils::ExampleResource>, test_resource);
+	EXPORT_VAR(godot::NodePath, example_node_path);
 	EXPORT_NODE(godot::MeshInstance3D, mesh_instance);
 
-private:
+public:
 	godot::Ref<ExampleRef> n;
 	godot::Vector2 current_mouse_pos;
-
-public:
 	Summator();
 	auto _notification(int what) -> void;
 	auto _unhandled_input(const godot::Ref<godot::InputEvent> &p_event) -> void override;
@@ -39,4 +37,5 @@ public:
 protected:
 	static void _bind_methods();
 };
+
 } //namespace gutils

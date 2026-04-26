@@ -1,10 +1,13 @@
 extends Node3D
 
+
 func _ready() -> void:
 	pass
 # 	var s := ExampleRef.new()
 # 	var e := s.something_to.connect($Summator.say_hi)
 # 	print(error_string(e))
-	
+	var s := Summator.new()
+	s.get_total()
+
 #
 # 	s.something_to.emit()

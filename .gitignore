@@ -63,3 +63,7 @@ CMakeUserPresets.json
 build
 .cache/clangd/index
 .qtcreator/CMakeLists.txt.user
+/.ark
+/.ark_config
+/.ark_ignore
+/.ark_server
